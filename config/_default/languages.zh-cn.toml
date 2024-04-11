@@ -1,0 +1,25 @@
+languageCode = "zh-cn"
+languageName = "Chinese"
+weight = 1
+title = "Kaneha's Blog"
+
+[params]
+  displayName = "ZH-CN"
+  isoCode = "zh-cn"
+  rtl = false
+  dateFormat = "2 January 2006"
+  # logo = "img/logo.png"
+  # secondaryLogo = "img/secondary-logo.png"
+  # description = "My awesome website"
+  # copyright = "Copy, _right?_ :thinking_face:"
+
+[author]
+  name = "Kaneha"
+  image = "img/blowfish_logo.png"
+  headline = "初心者"
+  bio = "初心者"
+  # 个人链接
+  links = [
+    { link = "https://kaneha59.github.io/hugo/" },
+    { github = "https://github.com/kaneha59" }
+  ]

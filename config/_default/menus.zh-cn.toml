@@ -1,3 +1,39 @@
+# 使用说明
+
+# 1. 菜单类型
+# main: 头部菜单
+# subnavigation: 在头部菜单下一行展示的子导航菜单
+# footer: 底部菜单
+
+# 2. 属性介绍
+# name: 菜单id以及页面上展示的菜单名
+# parent: 父级菜单(值是父级菜单的name)
+# pre: 菜单图标 (比如写 list, 就指向的是 theme/blowfish/assets/list.svg 文件)
+# pageRef: 引用的 Hugo 的分类
+# url: 菜单指向的外部链接 (和pageRef冲突)
+# weight: 顺序权重, 按照从小到大排序, 小的在前
+
+[[main]]
+  name = "文章分类目录"
+  pre = "list"
+  weight = 20
+[[main]]
+  name = "自建站点"
+  parent = "文章分类目录"
+  pageRef = "website-build"
+  pre = "list"
+  weight = 20
+
+[[main]]
+  name = "友情链接"
+  pre = "list"
+  weight = 21
+[[main]]
+  name = "Kaneha's WP"
+  parent = "友情链接"
+  url = "https://blog.kaneha.online:1234"
+
+
 # -- Main Menu --
 # The main menu is displayed in the header at the top of the page.
 # Acceptable parameters are name, pageRef, page, url, title, weight.

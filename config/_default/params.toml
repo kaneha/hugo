@@ -5,118 +5,141 @@
 # Refer to the theme docs for more details about each of these parameters.
 # https://blowfish.page/docs/configuration/#theme-parameters
 
-colorScheme = "blowfish"
+
+colorScheme = "fire"  # 颜色方案
 defaultAppearance = "light" # valid options: light or dark
 autoSwitchAppearance = true
 
-enableSearch = true
-enableCodeCopy = false
 
-# mainSections = ["section1", "section2"]
-# robots = ""
+enableSearch = true # 开启网站搜索, 依赖于站点设置中的 outputs.home 设置项
 
-disableImageOptimization = false
-disableTextInHeader = false
+enableCodeCopy = true # 允许拷贝代码
 
-# defaultBackgroundImage = "IMAGE.jpg" # used as default for background images 
-# defaultFeaturedImage = "IMAGE.jpg" # used as default for featured images in all articles
 
-# highlightCurrentMenuArea = true
-# smartTOC = true
-# smartTOCHideUnfocusedChildren = true
+# mainSections = ["section1", "section2"] # 最近文章中应该展示的模块, 不设置时使用文章数量最多的版块
+# robots = "" # 用于支持搜索引擎爬虫如何处理你的网站。如果设置了该值，它将被输出在页面头部
+
+disableImageZoom = false  # 禁用网站上所有图片缩放功能。
+disableImageOptimization = false  # 禁用图片上所有图片的调整大小和优化功能。
+disableTextInHeader = false # 禁用文本类型的标题，对基于 logo 的标题很有用。
+
+# 默认背景图, 主页和文章页设置有背景图(layout = background)但没有指定背景图地址的时候, 此设置项生效
+#defaultBackgroundImage = "img/background.jpg" # used as default for background images 
+# 默认缩略图，用于所有文章的featured图片，可以通过文章目录中的 featured 图片替换。
+#defaultFeaturedImage = "img/background.jpg" # used as default for featured images in all articles
+
+# highlightCurrentMenuArea = true # 当菜单被选择时，标记主菜单中的菜单项。
+# smartTOC = true # 开启智能目录，视图中的项目将会被高亮显示。
+# smartTOCHideUnfocusedChildren = true  # 当开启智能目录，如果目录级别不再被聚焦时，将会隐藏更深层次的目录。
+
 
 [header]
+  # 定义整个站点的页头的布局
   layout = "basic" # valid options: basic, fixed, fixed-fill, fixed-gradient, fixed-fill-blur
 
 [footer]
-  showMenu = true
+  showMenu = true # 显示/隐藏页面底部菜单
   showCopyright = true
-  showThemeAttribution = true
-  showAppearanceSwitcher = true
+  showThemeAttribution = true # 是否在网站底部中显示"powered by" 的主题归属信息。
+  showAppearanceSwitcher = true # 是否在也页面底部显示外观切换器。
   showScrollToTop = true
 
 [homepage]
-  layout = "profile" # valid options: page, profile, hero, card, background, custom
-  #homepageImage = "IMAGE.jpg" # used in: hero, and card
-  showRecent = false
+  # 首页布局参数
+  layout = "page" # valid options: page, profile, hero, card, background, custom
+  # 在 hero 和 card 布局中使用的图像
+  #homepageImage = "img/background.jpg" # used in: hero, and card
+  showRecent = true # 是否在主页展示最新文章列表。
   showRecentItems = 5
-  showMoreLink = false
-  showMoreLinkDest = "/posts"
-  cardView = false
-  cardViewScreenWidth = false
+  showMoreLink = false  # '显式更多' 按钮
+  showMoreLinkDest = "/website-build" # '显式更多' 按钮指向的位置
+  cardView = false  # 将列表展示为卡片容器。
+  cardViewScreenWidth = true  # 增强列表中卡片的宽度，使其可以占据可用的全部宽度。
+  # 向下滚动主页时，是否模糊背景图。
   layoutBackgroundBlur = false # only used when layout equals background
 
+# 文章页配置
 [article]
   showDate = true
   showViews = false
   showLikes = false
-  showDateOnlyInArticle = false
-  showDateUpdated = false
+  showDateOnlyInArticle = false # 是否在文章内显示日期，不影响文章列表或卡片页面的日期显示。
+  showDateUpdated = true  # 是否展示文章的更新日期。
   showAuthor = true
+  # 作者框显示在每页的底部而不是顶部。
   # showAuthorBottom = false
-  showHero = false
+  showHero = false  # 缩略图是否会在每个页面中作为 hero 图像显示。
+  # hero 图像的展示样式
   # heroStyle = "basic" # valid options: basic, big, background, thumbAndBackground
+  # 向下滚动文章页时，是否模糊背景图。
   layoutBackgroundBlur = true # only used when heroStyle equals background or thumbAndBackground
+  # 在标题和正文之间添加空白区域间隔。
   layoutBackgroundHeaderSpace = true # only used when heroStyle equals background
-  showBreadcrumbs = false
-  showDraftLabel = true
-  showEdit = false
-  # editURL = "https://github.com/username/repo/"
-  editAppendPath = true
-  seriesOpened = false
-  showHeadingAnchors = true
-  showPagination = true
-  invertPagination = false
-  showReadingTime = true
-  showTableOfContents = false
-  # showRelatedContent = false
-  # relatedContentLimit = 3
-  showTaxonomies = false
-  showAuthorsBadges = false
-  showWordCount = true
+  showBreadcrumbs = true  # 是否在标题栏显示面包屑导航。
+  showDraftLabel = true # 当使用 --buildDrafts 构建网站时，是否在文章旁边显示草稿。
+  showEdit = false  # 是否展示编辑文章的链接
+  # editURL = "https://github.com/username/repo/" # 当激活 article.showEdit 参数，此参数用于设置文章的编辑链接。
+  editAppendPath = true # 当激活 article.showEdit 参数，是否将文章的路径附加到 article.editURL 参数所设置的 URL 后面
+  seriesOpened = false  # 是否默认显示打开系列模块、
+  showHeadingAnchors = true # 是否在文章标题旁添加锚点。
+  showPagination = true # 是否在文章末尾展示上一篇/下一篇的文章链接。
+  invertPagination = false  # 是否翻转下一篇/上一篇文章链接的方向。
+  showReadingTime = true  # 是否展示文章的阅读时间。
+  showTableOfContents = true  # 是否展示文章的目录(大纲)。
+  # showRelatedContent = false  # 为文章显示相关内容。详情去查阅文档
+  # relatedContentLimit = 3 # 如果启用showRelatedContent，则限制显示相关文章的数量。
+  showTaxonomies = true  # 是否显示文章的分类或标签信息。
+  showAuthorsBadges = false # 是否在文章或列表中显示 authors 分类。这需要开启多个作者, 详情查阅文档
+  showWordCount = true  # 是否显示文章的字数。 如果你的语言属于 CJK 语言，需要在 config.toml 中开启 hasCJKLanguage 参数。
+  showComments = false # 是否在文章末尾添加 评论部分。详情查阅文档
+  # 在文章末尾显示的分享链接。
   # sharingLinks = [ "linkedin", "twitter", "reddit", "pinterest", "facebook", "email", "whatsapp", "telegram"]
-  showZenMode = false
+  showZenMode = false # 指定是否激活文章阅读的禅模式，即隐藏常规的界面元素。
 
+# 列表页
 [list]
-  showHero = false
-  # heroStyle = "background" # valid options: basic, big, background, thumbAndBackground
+  showHero = false  # 缩略图是否会在每个页面中作为 hero 图像显示。
+  #heroStyle = "basic" # valid options: basic, big, background, thumbAndBackground
   layoutBackgroundBlur = true # only used when heroStyle equals background or thumbAndBackground
   layoutBackgroundHeaderSpace = true # only used when heroStyle equals background
-  showBreadcrumbs = false
-  showSummary = false
+  showBreadcrumbs = false # 是否在标题栏显示面包屑导航。
+  showSummary = false # 是否在列表页显示文章摘要。
   showViews = false
   showLikes = false
-  showTableOfContents = false
-  showCards = false
-  groupByYear = true
-  cardView = false
-  cardViewScreenWidth = false
-  constrainItemsWidth = false
+  showTableOfContents = true # 是否显示目录
+  showCards = true # 是否将每个文章显示为卡片或简单的内联文本。
+  groupByYear = true  # 是否根据年做聚合。
+  cardView = false  # 将列表展示为卡片容器。
+  cardViewScreenWidth = false # 增强列表中卡片的宽度，使其可以占据可用的全部宽度。
+  constrainItemsWidth = false # 将项目宽度限制为 prose 以提高可读性。在没有 featurn 图片的时候非常有用。
 
 [sitemap]
-  excludedKinds = ["taxonomy", "term"]
+  excludedKinds = ["taxonomy", "term"]  # 从生成的 /sitemap.xml 文件中排除的内容。 具体的配置请参考 Hugo 文档。
 
+# 分类法
 [taxonomy]
-  showTermCount = true
-  showHero = false
+  showTermCount = true  # 是否在分类列表总显示对应的数量。
+  showHero = false    # 缩略图是否会在每个页面中作为 hero 图像显示。
   # heroStyle = "background" # valid options: basic, big, background, thumbAndBackground
-  showBreadcrumbs = false
+  showBreadcrumbs = true # 是否在标题栏显示面包屑导航。
   showViews = false
   showLikes = false
-  showTableOfContents = false
-  cardView = false
+  showTableOfContents = true # 是否显示目录。
+  cardView = false  # 将列表展示为卡片容器。
 
+# 术语
 [term]
   showHero = false
   # heroStyle = "background" # valid options: basic, big, background, thumbAndBackground
-  showBreadcrumbs = false
+  showBreadcrumbs = false # 是否在标题栏显示面包屑导航。
   showViews = false
   showLikes = false
-  showTableOfContents = true
-  groupByYear = false
-  cardView = false
-  cardViewScreenWidth = false
+  showTableOfContents = true  # 是否显示目录。
+  groupByYear = false # 是否根据年做聚合。
+  cardView = false  # 将列表展示为卡片容器。
+  cardViewScreenWidth = false # 增强列表中卡片的宽度，使其可以占据可用的全部宽度。
 
+# 与 Firebase 集成的配置项, 详情查阅文档
 [firebase]
   # apiKey = "XXXXXX"
   # authDomain = "XXXXXX"
@@ -126,21 +149,24 @@ disableTextInHeader = false
   # appId = "XXXXXX"
   # measurementId = "XXXXXX"
 
+# Fathom 站点分析平台, 详情查阅文档
 [fathomAnalytics]
   # site = "ABC12345"
   # domain = "llama.yoursite.com"
 
+# Umami 站点分析平台, 详情查阅文档
 [umamiAnalytics]
   # websiteid = "ABC12345"
   # domain = "llama.yoursite.com"
 
 [buymeacoffee]
-  # identifier = ""
-  # globalWidget = true
-  # globalWidgetMessage = "Hello"
-  # globalWidgetColor = "#FFDD00"
-  # globalWidgetPosition = "Right"
+  # identifier = "" # buymeacoffee 账号的用户名。
+  # globalWidget = true # 激活位于全局的 buymeacoffee 组件。
+  # globalWidgetMessage = "Hello" # 新用户首次访问网站时显示的消息。
+  # globalWidgetColor = "#FFDD00" # 组件颜色，使用 HEX 格式。
+  # globalWidgetPosition = "Right"  # 组件位置，例如 “Left” 或 “Right”。
 
+# 网站验证字符串，用于在网站元数据中包含。
 [verification]
   # google = ""
   # bing = ""
