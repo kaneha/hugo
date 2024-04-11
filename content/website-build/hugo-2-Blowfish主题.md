@@ -35,7 +35,7 @@ Blowfish主题. 啊, 很不错. 官方文档介绍非常详细, 多看看官方�
 *  `hugo.toml` 文件的一些配置项
 * 如何设置网站本地化(i18n)
 * `languages.[language-code].toml`, 包含本地化的站点配置和作者简介
-* `params.toml`, 主题功能的配置参数, 配置项非常多, 设计页面的每个部分
+* `params.toml`, 主题功能的配置参数, 配置项非常多, 涉及页面的每个部分
 
 [配置 · Blowfish](https://blowfish.page/zh-cn/docs/configuration/)
 
