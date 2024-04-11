@@ -1,3 +1,8 @@
+# 注意: 
+#   一些主题会有很多配置文件, 安装主题时会要求把这些配置文件放入config目录,
+#   而根目录的hugo.toml(此文件) 的优先级低于config下的配置文件, 
+#   所以使用那些主题时, 根目录的hugo.toml(此文件)不生效.
+#   我现在正在用的是Blowfish主题, 此文件不生效.
 baseURL = 'https://example.org/'
 languageCode = 'en-us'
 title = "Kaneha's Blog"
