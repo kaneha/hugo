@@ -53,11 +53,6 @@ Blowfish主题. 啊, 很不错. 官方文档介绍非常详细, 多看看官方�
 
 * 介绍了由Blowfish主题提供的额外的shortcodes
 
-下面是一个短代码例子, 在页面上可以看到效果
-
-{{< alert icon="moon" cardColor="\#FFE7BA" iconColor="#1d3557" textColor="#1C1C1C" >}}
-Blowfish专用短代码 - Alert
-{{< /alert >}}
 
 
 
