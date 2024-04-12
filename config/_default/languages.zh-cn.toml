@@ -20,6 +20,6 @@ title = "Kaneha's Blog"
   bio = "初心者"
   # 个人链接
   links = [
-    { link = "https://kaneha59.github.io/hugo/" },
-    { github = "https://github.com/kaneha59" }
+    { link = "https://kaneha.github.io/hugo/" },
+    { github = "https://github.com/kaneha" }
   ]
