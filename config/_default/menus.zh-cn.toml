@@ -24,15 +24,6 @@
   pre = "list"
   weight = 20
 
-[[main]]
-  name = "友情链接"
-  pre = "list"
-  weight = 21
-[[main]]
-  name = "Kaneha's WP"
-  parent = "友情链接"
-  url = "https://blog.kaneha.online:1234"
-
 
 # -- Main Menu --
 # The main menu is displayed in the header at the top of the page.
