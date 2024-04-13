@@ -59,7 +59,10 @@ jobs:
           hugo \
             --gc \
             --minify \
-            --baseURL "${{ steps.pages.outputs.base_url }}/"          
+            --baseURL "${{ steps.pages.outputs.base_url }}/"
+          pwd
+          hugo --gc --minify
+          ls     
       - name: Upload artifact
         # uses是直接调用actions, run是自己写命令
         uses: actions/upload-pages-artifact@v3
@@ -84,7 +87,6 @@ jobs:
           SSH_USER: ${{ vars.SSH_USER }}
           DEPLOY_PATH: ${{ vars.DEPLOY_PATH }}
         run: | 
-          hugo --gc --minify
           pwd
           ls
           ls ../
