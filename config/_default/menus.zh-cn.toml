@@ -13,15 +13,37 @@
 # url: 菜单指向的外部链接 (和pageRef冲突)
 # weight: 顺序权重, 按照从小到大排序, 小的在前
 
+
+#########################################################
+# 标签
 [[main]]
-  name = "文章分类目录"
-  pre = "list"
+  name = "标签"
+  pageRef = "tags"
+  weight = 10
+[[main]]
+#########################################################
+# series
+[[main]]
+  name = "系列"
+  pageRef = "series"
+  weight = 15
+[[main]]
+#########################################################
+# 目录
+[[main]]
+  name = "目录"
   weight = 20
 [[main]]
-  name = "自建站点"
-  parent = "文章分类目录"
-  pageRef = "website-build"
-  pre = "list"
+  name = "建站"
+  parent = "目录"
+  pageRef = "posts/website-build"
+  pre = "bars"
+  weight = 20
+[[main]]
+  name = "软件"
+  parent = "目录"
+  pageRef = "posts/software"
+  pre = "bars"
   weight = 20
 
 

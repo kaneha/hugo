@@ -16,7 +16,7 @@ enableSearch = true # 开启网站搜索, 依赖于站点设置中的 outputs.ho
 enableCodeCopy = true # 允许拷贝代码
 
 
-# mainSections = ["section1", "section2"] # 最近文章中应该展示的模块, 不设置时使用文章数量最多的版块
+mainSections = ["software", "website-build"] # 最近文章中应该展示的模块, 不设置时使用文章数量最多的版块
 # robots = "" # 用于支持搜索引擎爬虫如何处理你的网站。如果设置了该值，它将被输出在页面头部
 
 disableImageZoom = false  # 禁用网站上所有图片缩放功能。
@@ -24,9 +24,9 @@ disableImageOptimization = false  # 禁用图片上所有图片的调整大小�
 disableTextInHeader = false # 禁用文本类型的标题，对基于 logo 的标题很有用。
 
 # 默认背景图, 主页和文章页设置有背景图(layout = background)但没有指定背景图地址的时候, 此设置项生效
-#defaultBackgroundImage = "img/background.jpg" # used as default for background images 
+defaultBackgroundImage = "img/fireflies.svg" # used as default for background images 
 # 默认缩略图，用于所有文章的featured图片，可以通过文章目录中的 featured 图片替换。
-#defaultFeaturedImage = "img/background.jpg" # used as default for featured images in all articles
+defaultFeaturedImage = "img/blowfish_logo.png" # used as default for featured images in all articles
 
 # highlightCurrentMenuArea = true # 当菜单被选择时，标记主菜单中的菜单项。
 # smartTOC = true # 开启智能目录，视图中的项目将会被高亮显示。
@@ -46,7 +46,7 @@ disableTextInHeader = false # 禁用文本类型的标题，对基于 logo 的�
 
 [homepage]
   # 首页布局参数
-  layout = "page" # valid options: page, profile, hero, card, background, custom
+  layout = "background" # valid options: page, profile, hero, card, background, custom
   # 在 hero 和 card 布局中使用的图像
   #homepageImage = "img/background.jpg" # used in: hero, and card
   showRecent = true # 是否在主页展示最新文章列表。
@@ -54,7 +54,7 @@ disableTextInHeader = false # 禁用文本类型的标题，对基于 logo 的�
   showMoreLink = false  # '显式更多' 按钮
   showMoreLinkDest = "/website-build" # '显式更多' 按钮指向的位置
   cardView = false  # 将列表展示为卡片容器。
-  cardViewScreenWidth = true  # 增强列表中卡片的宽度，使其可以占据可用的全部宽度。
+  cardViewScreenWidth = false  # 增强列表中卡片的宽度，使其可以占据可用的全部宽度。
   # 向下滚动主页时，是否模糊背景图。
   layoutBackgroundBlur = false # only used when layout equals background
 
@@ -63,16 +63,16 @@ disableTextInHeader = false # 禁用文本类型的标题，对基于 logo 的�
   showDate = true
   showViews = false
   showLikes = false
-  showDateOnlyInArticle = false # 是否在文章内显示日期，不影响文章列表或卡片页面的日期显示。
+  showDateOnlyInArticle = true # 是否在文章内显示日期，不影响文章列表或卡片页面的日期显示。
   showDateUpdated = true  # 是否展示文章的更新日期。
   showAuthor = true
   # 作者框显示在每页的底部而不是顶部。
   # showAuthorBottom = false
-  showHero = false  # 缩略图是否会在每个页面中作为 hero 图像显示。
+  showHero = true  # 缩略图是否会在每个页面中作为 hero 图像显示。
   # hero 图像的展示样式
-  # heroStyle = "basic" # valid options: basic, big, background, thumbAndBackground
+   heroStyle = "background" # valid options: basic, big, background, thumbAndBackground
   # 向下滚动文章页时，是否模糊背景图。
-  layoutBackgroundBlur = true # only used when heroStyle equals background or thumbAndBackground
+  layoutBackgroundBlur = false # only used when heroStyle equals background or thumbAndBackground
   # 在标题和正文之间添加空白区域间隔。
   layoutBackgroundHeaderSpace = true # only used when heroStyle equals background
   showBreadcrumbs = true  # 是否在标题栏显示面包屑导航。
@@ -98,8 +98,8 @@ disableTextInHeader = false # 禁用文本类型的标题，对基于 logo 的�
 
 # 列表页
 [list]
-  showHero = false  # 缩略图是否会在每个页面中作为 hero 图像显示。
-  #heroStyle = "basic" # valid options: basic, big, background, thumbAndBackground
+  showHero = true  # 缩略图是否会在每个页面中作为 hero 图像显示。
+  heroStyle = "background" # valid options: basic, big, background, thumbAndBackground
   layoutBackgroundBlur = true # only used when heroStyle equals background or thumbAndBackground
   layoutBackgroundHeaderSpace = true # only used when heroStyle equals background
   showBreadcrumbs = false # 是否在标题栏显示面包屑导航。
@@ -109,7 +109,7 @@ disableTextInHeader = false # 禁用文本类型的标题，对基于 logo 的�
   showTableOfContents = true # 是否显示目录
   showCards = true # 是否将每个文章显示为卡片或简单的内联文本。
   groupByYear = true  # 是否根据年做聚合。
-  cardView = false  # 将列表展示为卡片容器。
+  cardView = true  # 将列表展示为卡片容器。
   cardViewScreenWidth = false # 增强列表中卡片的宽度，使其可以占据可用的全部宽度。
   constrainItemsWidth = false # 将项目宽度限制为 prose 以提高可读性。在没有 featurn 图片的时候非常有用。
 
@@ -119,23 +119,23 @@ disableTextInHeader = false # 禁用文本类型的标题，对基于 logo 的�
 # 分类法
 [taxonomy]
   showTermCount = true  # 是否在分类列表总显示对应的数量。
-  showHero = false    # 缩略图是否会在每个页面中作为 hero 图像显示。
-  # heroStyle = "background" # valid options: basic, big, background, thumbAndBackground
+  showHero = true    # 缩略图是否会在每个页面中作为 hero 图像显示。
+  heroStyle = "background" # valid options: basic, big, background, thumbAndBackground
   showBreadcrumbs = true # 是否在标题栏显示面包屑导航。
   showViews = false
   showLikes = false
   showTableOfContents = true # 是否显示目录。
-  cardView = false  # 将列表展示为卡片容器。
+  cardView = true  # 将列表展示为卡片容器。
 
 # 术语
 [term]
-  showHero = false
-  # heroStyle = "background" # valid options: basic, big, background, thumbAndBackground
+  showHero = true
+  heroStyle = "background" # valid options: basic, big, background, thumbAndBackground
   showBreadcrumbs = false # 是否在标题栏显示面包屑导航。
   showViews = false
   showLikes = false
   showTableOfContents = true  # 是否显示目录。
-  groupByYear = false # 是否根据年做聚合。
+  groupByYear = true # 是否根据年做聚合。
   cardView = false  # 将列表展示为卡片容器。
   cardViewScreenWidth = false # 增强列表中卡片的宽度，使其可以占据可用的全部宽度。
 

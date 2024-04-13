@@ -1,18 +1,16 @@
 +++
 title = 'Hugo - 1 - 快速入门'
 date = 2024-04-11T10:29:17+08:00
-draft = false
+tags = ["建站"]
 series = ["Hugo建站"]
 series_order = 1
-categories = ["testCate"]
-tages = ["testTag"]
+
 +++
 
 
 
 首先, 多阅读官方文档:
 
-* [hugo中文文档](https://hugo.opendocs.io/getting-started/)
 * [hugo官方文档](https://gohugo.io/documentation/)
 
 
@@ -24,15 +22,6 @@ tages = ["testTag"]
 为什么要安装dart-sass?
 > Dart Sass is required to transpile Sass to CSS when using the latest features of the Sass language.
 
-### Linux
-``` bash
-# apt安装go
-apt install golang-go
-# snap安装dart sass (apt没有这个软件, 所以用snap)
-snap install dart-sass
-# snap安装hugo
-snap install hugo
-```
 ### windows
 照着官方文档安装即可.(go, dart-sass, hugo)
 windows包管理工具我选择了scoop
@@ -63,7 +52,7 @@ hugo server --bind 0.0.0.0
 hugo new content posts/my-first-post.md
 ```
 
-命令新增的md文件长这样 (+++ 中间是文件的元信息 +++)
+命令新增的md文件长这样 (+++ 中间是文件的元信息 +++), new content其实是按照archetypes目录下的 new content专用模板 `default.md` 来 new content 的. 此文件可以按照自己的偏好自行修改.
 
 draft = true 表示这是草稿(草稿不会发布), false表示不是草稿
 
@@ -78,7 +67,7 @@ draft = true
 修改配置文件(hugo.toml)
   baseURL = 'https://example.org/'  (baseURL必须以协议开头, 以斜线结尾)
 
-接着启动服务 `hugo server -D --bind 0.0.0.0` , -D表示把草稿也发布出去, 访问页面, 会发现新加的页面已经展示出来了.
+接着启动服务 `hugo server -D` , -D表示把草稿也发布出去, 访问页面, 会发现新加的页面已经展示出来了.
 
 
 
@@ -91,10 +80,10 @@ draft = true
 ``` bash
 # 执行hugo命令生成静态文件, 有很多参数, 具体自行查看 `hugo --help`
 # 注意不要部署到/root目录下, nginx没有访问权限, 访问网站会报错403
-hugo -d /var/www/hugo
+hugo
 ```
 
-这一步会生成网站代码, 注意不指定路径时会默认在当前文件夹下生成public文件夹.
+这一步会生成网站代码, 注意不指定路径时会默认在当前文件夹下生成public和resources文件夹.
 
 2. 配置nginx
 
@@ -103,8 +92,8 @@ server {
     listen 1234 ssl;
     listen  [::]:1234 ssl;
     server_name blog.***.***; 	# 你的域名
-    ssl_certificate /root/.acme.sh/*..***.***;_ecc/fullchain.cer; # 证书路径
-    ssl_certificate_key /root/.acme.sh/*..***.***;_ecc/*..***.***;.key; # 私钥路径
+  	ssl_certificate /etc/nginx/ssl/cert.pem; # 证书路径
+  	ssl_certificate_key /etc/nginx/ssl/key.pem; # 私钥路径
 
     location / {
         # 将该路径替换为你的网站根目录。
