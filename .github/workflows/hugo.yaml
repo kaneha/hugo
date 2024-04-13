@@ -85,6 +85,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set up SSH access
+      env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_HOST: ${{ vars.SSH_HOST }}
+          SSH_PORT: ${{ vars.SSH_PORT }}
+          SSH_USER: ${{ vars.SSH_USER }}
+          DEPLOY_PATH: ${{ vars.DEPLOY_PATH }}
         run: | 
           echo "SSH_HOST: $SSH_HOST"  
           echo "SSH_PORT: $SSH_PORT"  
@@ -95,12 +101,6 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh -p $SSH_PORT $SSH_USER@$SSH_HOST "rm -rf $DEPLOY_PATH"
           scp -P $SSH_PORT -r ./public "$SSH_USER@$SSH_HOST:$DEPLOY_PATH" 
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          SSH_HOST: ${{ vars.SSH_HOST }}
-          SSH_PORT: ${{ vars.SSH_PORT }}
-          SSH_USER: ${{ vars.SSH_USER }}
-          DEPLOY_PATH: ${{ vars.DEPLOY_PATH }}
       - name: Clean up SSH keys  
         if: always() # 确保即使在出错时也清理密钥  
         # 如果手动添加了服务器的公钥,也需要删除known_hosts文件  
