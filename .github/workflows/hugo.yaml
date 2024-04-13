@@ -86,10 +86,10 @@ jobs:
       - name: Set up SSH access
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          SSH_HOST: ${{ vars.SSH_HOST }}
-          SSH_PORT: ${{ vars.SSH_PORT }}
-          SSH_USER: ${{ vars.SSH_USER }}
-          DEPLOY_PATH: ${{ vars.DEPLOY_PATH }}
+          SSH_HOST: ${{ variables.SSH_HOST }}
+          SSH_PORT: ${{ variables.SSH_PORT }}
+          SSH_USER: ${{ variables.SSH_USER }}
+          DEPLOY_PATH: ${{ variables.DEPLOY_PATH }}
         run: |
         # 使用ssh-keyscan获取服务器的SSH密钥指纹 
         # 如果服务器端口不开放或者ssh-keyscan无法使用, 您可能需要手动添加服务器的公钥到known_hosts文件  
