@@ -69,6 +69,7 @@ jobs:
 
   # Deployment job
   deploy:
+    # 这里设置了使用名为 github-pages 的environment
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -83,6 +84,7 @@ jobs:
           SSH_USER: ${{ vars.SSH_USER }}
           DEPLOY_PATH: ${{ vars.DEPLOY_PATH }}
         run: | 
+          hugo --gc --minify
           pwd
           ls
           ls ../
