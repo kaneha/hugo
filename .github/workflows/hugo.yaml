@@ -62,23 +62,7 @@ jobs:
             --baseURL "${{ steps.pages.outputs.base_url }}/"
           pwd
           hugo --gc --minify
-          ls     
-      - name: Upload artifact
-        # uses是直接调用actions, run是自己写命令
-        uses: actions/upload-pages-artifact@v3
-        # with 是用于给 uses 指定的的 actions 传递参数的
-        with:
-          path: ./public
-
-  # Deployment job
-  deploy:
-    # 这里设置了使用名为 github-pages 的environment
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
+          ls
       - name: Set up SSH access
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
@@ -103,6 +87,22 @@ jobs:
         run: |  
           rm -rf ~/.ssh/id_rsa  
           rm -rf ~/.ssh/known_hosts
+      - name: Upload artifact
+        # uses是直接调用actions, run是自己写命令
+        uses: actions/upload-pages-artifact@v3
+        # with 是用于给 uses 指定的的 actions 传递参数的
+        with:
+          path: ./public
+
+  # Deployment job
+  deploy:
+    # 这里设置了使用名为 github-pages 的environment
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
