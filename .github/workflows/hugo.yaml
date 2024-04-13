@@ -87,10 +87,10 @@ jobs:
       - name: Set up SSH access
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          SSH_HOST: ${{ variables.SSH_HOST }}
-          SSH_PORT: ${{ variables.SSH_PORT }}
-          SSH_USER: ${{ variables.SSH_USER }}
-          DEPLOY_PATH: ${{ variables.DEPLOY_PATH }}
+          SSH_HOST: ${{ vars.SSH_HOST }}
+          SSH_PORT: ${{ vars.SSH_PORT }}
+          SSH_USER: ${{ vars.SSH_USER }}
+          DEPLOY_PATH: ${{ vars.DEPLOY_PATH }}
         run: |
           echo 'just test'
       #   # 使用ssh-keyscan获取服务器的SSH密钥指纹 
