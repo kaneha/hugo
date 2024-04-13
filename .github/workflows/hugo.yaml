@@ -63,6 +63,10 @@ jobs:
           pwd
           hugo --gc --minify
           ls
+      # 为什么ssh部署静态文件到自己的服务器这一步骤要写到这里?
+      # 因为: 
+      #   不同阶段数据不互通. 这一阶段(build阶段)安装的hugo和检出的代码到下一阶段就没了
+      #   要使用hugo生成静态文件并传输就只能在这一阶段了, 如果在下一阶段执行的话还要重新安装hugo并检出代码   
       - name: Set up SSH access
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
@@ -70,11 +74,15 @@ jobs:
           SSH_PORT: ${{ vars.SSH_PORT }}
           SSH_USER: ${{ vars.SSH_USER }}
           DEPLOY_PATH: ${{ vars.DEPLOY_PATH }}
+        # 这段执行了什么内容:
+        # 使用ssh-keyscan获取ssh服务端的SSH公钥并保存进自己的known_hosts文件.
+        # 如果服务器端口不开放或者ssh-keyscan无法使用, 您可能需要手动添加服务器的公钥到known_hosts文件  
+        # 使用ssh命令在服务器上执行脚本或命令
+        # 使用scp命令复制文件到服务器
+         
         run: | 
           pwd
           ls
-          ls ../
-          echo "try again..."
           mkdir -p ~/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
@@ -106,32 +114,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
-        
-  #
-  # deploy2:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Set up SSH access
-  #       env:
-  #         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-  #         SSH_HOST: ${{ vars.SSH_HOST }}
-  #         SSH_PORT: ${{ vars.SSH_PORT }}
-  #         SSH_USER: ${{ vars.SSH_USER }}
-  #         DEPLOY_PATH: ${{ vars.DEPLOY_PATH }}
-  #       run: | 
-  #         pwd
-  #         ls
-  #         echo "try again"
-  #         mkdir -p ~/.ssh
-  #         echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-  #         chmod 600 ~/.ssh/id_rsa
-  #         ssh-keyscan -p $SSH_PORT $SSH_HOST >> ~/.ssh/known_hosts
-  #         ssh -p $SSH_PORT $SSH_USER@$SSH_HOST "rm -rf $DEPLOY_PATH"
-  #         scp -P $SSH_PORT -r ./public "$SSH_USER@$SSH_HOST:$DEPLOY_PATH" 
-  #     - name: Clean up SSH keys  
-  #       if: always() # 确保即使在出错时也清理密钥  
-  #       # 如果手动添加了服务器的公钥,也需要删除known_hosts文件  
-  #       run: |  
-  #         rm -rf ~/.ssh/id_rsa  
-  #         rm -rf ~/.ssh/known_hosts
