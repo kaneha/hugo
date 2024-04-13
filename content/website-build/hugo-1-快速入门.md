@@ -2,8 +2,10 @@
 title = 'Hugo - 1 - 快速入门'
 date = 2024-04-11T10:29:17+08:00
 draft = false
-categories = ['建站']
-tags = ['建站', 'hugo']
+series = ["Hugo建站"]
+series_order = 1
+categories = ["testCate"]
+tages = ["testTag"]
 +++
 
 
