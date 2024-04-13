@@ -92,10 +92,15 @@ jobs:
           SSH_USER: ${{ vars.SSH_USER }}
           DEPLOY_PATH: ${{ vars.DEPLOY_PATH }}
         run: | 
+          echo "SSH_PRIVATE_KEY: $SSH_PRIVATE_KEY"  
+          echo "SSH_HOST: $SSH_HOST"  
+          echo "SSH_PORT: $SSH_PORT"  
+          echo "SSH_USER: $SSH_USER"  
+          echo "DEPLOY_PATH: $DEPLOY_PATH"
           mkdir -p ~/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh -p $SSH_PORT $SSH_USER@$SSH_HOST "rm -rf ${{ vars.DEPLOY_PATH }}"
+          ssh -p $SSH_PORT $SSH_USER@$SSH_HOST "rm -rf $DEPLOY_PATH"
           scp -P $SSH_PORT -r ./public "$SSH_USER@$SSH_HOST:$DEPLOY_PATH" 
 
       - name: Clean up SSH keys  
