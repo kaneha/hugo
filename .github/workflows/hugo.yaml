@@ -75,15 +75,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-
-        
-  #
-  deploy2:
-    runs-on: ubuntu-latest
-    steps:
       - name: Set up SSH access
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
@@ -93,12 +84,9 @@ jobs:
           DEPLOY_PATH: ${{ vars.DEPLOY_PATH }}
         run: | 
           pwd
-          echo "try again"
           ls
-          echo "SSH_HOST: $SSH_HOST"  
-          echo "SSH_PORT: $SSH_PORT"  
-          echo "SSH_USER: $SSH_USER"  
-          echo "DEPLOY_PATH: $DEPLOY_PATH"
+          ls ../
+          echo "try again"
           mkdir -p ~/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
@@ -111,3 +99,35 @@ jobs:
         run: |  
           rm -rf ~/.ssh/id_rsa  
           rm -rf ~/.ssh/known_hosts
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+        
+  #
+  # deploy2:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Set up SSH access
+  #       env:
+  #         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+  #         SSH_HOST: ${{ vars.SSH_HOST }}
+  #         SSH_PORT: ${{ vars.SSH_PORT }}
+  #         SSH_USER: ${{ vars.SSH_USER }}
+  #         DEPLOY_PATH: ${{ vars.DEPLOY_PATH }}
+  #       run: | 
+  #         pwd
+  #         ls
+  #         echo "try again"
+  #         mkdir -p ~/.ssh
+  #         echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+  #         chmod 600 ~/.ssh/id_rsa
+  #         ssh-keyscan -p $SSH_PORT $SSH_HOST >> ~/.ssh/known_hosts
+  #         ssh -p $SSH_PORT $SSH_USER@$SSH_HOST "rm -rf $DEPLOY_PATH"
+  #         scp -P $SSH_PORT -r ./public "$SSH_USER@$SSH_HOST:$DEPLOY_PATH" 
+  #     - name: Clean up SSH keys  
+  #       if: always() # 确保即使在出错时也清理密钥  
+  #       # 如果手动添加了服务器的公钥,也需要删除known_hosts文件  
+  #       run: |  
+  #         rm -rf ~/.ssh/id_rsa  
+  #         rm -rf ~/.ssh/known_hosts
