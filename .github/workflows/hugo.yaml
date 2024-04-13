@@ -73,7 +73,7 @@ jobs:
           SSH_HOST: ${{ vars.SSH_HOST }}
           SSH_PORT: ${{ vars.SSH_PORT }}
           SSH_USER: ${{ vars.SSH_USER }}
-          DEPLOY_PATH: ${{ vars.DEPLOY_PATH }}
+          DEPLOY_PATH_PREFIX: ${{ vars.DEPLOY_PATH_PREFIX }}
         # 这段执行了什么内容:
         # 使用ssh-keyscan获取ssh服务端的SSH公钥并保存进自己的known_hosts文件.
         # 如果服务器端口不开放或者ssh-keyscan无法使用, 您可能需要手动添加服务器的公钥到known_hosts文件  
@@ -87,8 +87,10 @@ jobs:
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -p $SSH_PORT $SSH_HOST >> ~/.ssh/known_hosts
-          ssh -p $SSH_PORT $SSH_USER@$SSH_HOST "rm -rf $DEPLOY_PATH"
-          scp -P $SSH_PORT -r ./public "$SSH_USER@$SSH_HOST:$DEPLOY_PATH" 
+          
+          scp -P $SSH_PORT -r ./public "$SSH_USER@$SSH_HOST:$DEPLOY_PATH_PREFIX/hugo_new" 
+          ssh -p $SSH_PORT $SSH_USER@$SSH_HOST "rm -rf $DEPLOY_PATH_PREFIX/hugo \
+          && mv $DEPLOY_PATH_PREFIX/hugo_new $DEPLOY_PATH_PREFIX/hugo"
       - name: Clean up SSH keys  
         if: always() # 确保即使在出错时也清理密钥  
         # 如果手动添加了服务器的公钥,也需要删除known_hosts文件  
