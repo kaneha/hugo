@@ -92,7 +92,7 @@ jobs:
           SSH_USER: ${{ variables.SSH_USER }}
           DEPLOY_PATH: ${{ variables.DEPLOY_PATH }}
         run: |
-        echo 'just test'
+          echo 'just test'
       #   # 使用ssh-keyscan获取服务器的SSH密钥指纹 
       #   # 如果服务器端口不开放或者ssh-keyscan无法使用, 您可能需要手动添加服务器的公钥到known_hosts文件  
       #   # 使用scp命令复制文件到服务器, 指定端口  
