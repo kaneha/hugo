@@ -61,7 +61,9 @@ jobs:
             --minify \
             --baseURL "${{ steps.pages.outputs.base_url }}/"          
       - name: Upload artifact
+        # uses是直接调用actions, run是自己写命令
         uses: actions/upload-pages-artifact@v3
+        # with 是用于给 uses 指定的的 actions 传递参数的
         with:
           path: ./public
 
@@ -76,3 +78,41 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  #
+  deploy2:
+    runs-on: ubuntu-latest
+    steps:
+      # - name: Checkout
+      #   uses: actions/checkout@v4
+
+      - name: Set up SSH access
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_HOST: ${{ vars.SSH_HOST }}
+          SSH_PORT: ${{ vars.SSH_PORT }}
+          SSH_USER: ${{ vars.SSH_USER }}
+          DEPLOY_PATH: ${{ vars.DEPLOY_PATH }}
+
+        
+        run: |
+        # 使用ssh-keyscan获取服务器的SSH密钥指纹 
+        # 如果服务器端口不开放或者ssh-keyscan无法使用, 您可能需要手动添加服务器的公钥到known_hosts文件  
+        # 使用scp命令复制文件到服务器, 指定端口  
+        # 使用ssh命令在服务器上执行脚本或命令, 同样指定端口  
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -p $SSH_PORT $SSH_HOST >> ~/.ssh/known_hosts
+          
+          ssh -p $SSH_PORT $SSH_USER@$SSH_HOST "rm -rf ${{ vars.DEPLOY_PATH }}"
+
+          scp -P $SSH_PORT -r ./public "$SSH_USER@$SSH_HOST:$DEPLOY_PATH" 
+
+      - name: Clean up SSH keys  
+        if: always() # 确保即使在出错时也清理密钥  
+        # 如果手动添加了服务器的公钥,也需要删除known_hosts文件  
+        run: |  
+          rm -rf ~/.ssh/id_rsa  
+          
+          rm -rf ~/.ssh/known_hosts
