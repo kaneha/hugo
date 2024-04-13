@@ -5,6 +5,4 @@ draft = false
 
 +++
 
-# kaneha's Blog
-
 {{< list limit=3 cardView=false >}}
