@@ -91,6 +91,17 @@ jobs:
           SSH_PORT: ${{ vars.SSH_PORT }}
           SSH_USER: ${{ vars.SSH_USER }}
           DEPLOY_PATH: ${{ vars.DEPLOY_PATH }}
-        run: |
-          echo 'just test' 
+        run: | 
           mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -p $SSH_PORT $SSH_HOST >> ~/.ssh/known_hosts
+          ssh -p $SSH_PORT $SSH_USER@$SSH_HOST "rm -rf ${{ vars.DEPLOY_PATH }}"
+          scp -P $SSH_PORT -r ./public "$SSH_USER@$SSH_HOST:$DEPLOY_PATH" 
+
+      - name: Clean up SSH keys  
+        if: always() # 确保即使在出错时也清理密钥  
+        # 如果手动添加了服务器的公钥,也需要删除known_hosts文件  
+        run: |  
+          rm -rf ~/.ssh/id_rsa  
+          rm -rf ~/.ssh/known_hosts
