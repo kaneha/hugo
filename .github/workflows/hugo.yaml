@@ -95,7 +95,6 @@ jobs:
           mkdir -p ~/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -p $SSH_PORT $SSH_HOST >> ~/.ssh/known_hosts
           ssh -p $SSH_PORT $SSH_USER@$SSH_HOST "rm -rf ${{ vars.DEPLOY_PATH }}"
           scp -P $SSH_PORT -r ./public "$SSH_USER@$SSH_HOST:$DEPLOY_PATH" 
 
