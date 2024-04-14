@@ -2,7 +2,7 @@
 title = '文件同步 - Syncthing'
 date = 2024-04-12T11:00:45+08:00
 draft = false
-tags = ["软件"]
+tags = ["软件", "文件同步"]
 +++
 
 
