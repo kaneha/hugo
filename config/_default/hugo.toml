@@ -8,6 +8,7 @@ theme = "blowfish"
 # 网站URL根地址. 暂时不清楚用途
 # baseURL = "https://kaneha.online:1234/"
 defaultContentLanguage = "zh-cn"
+hasCJKLanguage = true # 使用cjk语言时要开启此选项, 否则统计字数会出问题. CJK: Chinese, Japanese, Korea
 
 # pluralizeListTitles = "true" # hugo function useful for non-english languages, find out more in  https://gohugo.io/getting-started/configuration/#pluralizelisttitles
 
@@ -15,8 +16,7 @@ defaultContentLanguage = "zh-cn"
 # 如果你想要自己提供 robots.txt，那么设置这个值为 false 并把你的文件放置到 static 目录下。 
 enableRobotsTXT = true
 
-# 文章列表中, 每页展示的文章数量
-paginate = 10
+paginate = 10 # 文章列表中, 每页展示的文章数量
 
 # 当 扉页参数 中没有提供文章摘要时，此参数定义了自动生成文章摘要的单词数量。
 # 如果值为0，则默认使用第一句话作为摘要。当摘要被隐藏，这个值没有任何效果。
