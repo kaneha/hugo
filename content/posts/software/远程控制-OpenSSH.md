@@ -93,6 +93,3 @@ known_hosts 文件本机是用来验证公钥的, 当请求建立 ssh 连接时,
 
 authorized_keys 文件指定了哪些机器可以登录到这台机器. authorized_keys 文件中每一行是一条公钥. 配置 ssh 免密登录时要将生成的公钥交给服务端保管, 这一步就是将公钥写入 authorized_keys 文件.
 
-
-
-参考: https://cloud.tencent.com/developer/article/1780788

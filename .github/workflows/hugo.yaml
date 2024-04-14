@@ -79,7 +79,6 @@ jobs:
         # 如果服务器端口不开放或者ssh-keyscan无法使用, 您可能需要手动添加服务器的公钥到known_hosts文件  
         # 使用ssh命令在服务器上执行脚本或命令
         # 使用scp命令复制文件到服务器
-         
         run: | 
           pwd
           ls
@@ -87,7 +86,6 @@ jobs:
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -p $SSH_PORT $SSH_HOST >> ~/.ssh/known_hosts
-          
           scp -P $SSH_PORT -r ./public "$SSH_USER@$SSH_HOST:$DEPLOY_PATH_PREFIX/hugo_new" 
           ssh -p $SSH_PORT $SSH_USER@$SSH_HOST "rm -rf $DEPLOY_PATH_PREFIX/hugo \
           && mv $DEPLOY_PATH_PREFIX/hugo_new $DEPLOY_PATH_PREFIX/hugo"
