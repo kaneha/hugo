@@ -63,6 +63,12 @@ jobs:
           pwd
           hugo --gc --minify
           ls
+      - name: Upload artifact
+        # uses是直接调用actions, run是自己写命令
+        uses: actions/upload-pages-artifact@v3
+        # with 是用于给 uses 指定的的 actions 传递参数的
+        with:
+          path: ./public
       # 为什么ssh部署静态文件到自己的服务器这一步骤要写到这里?
       # 因为: 
       #   不同阶段数据不互通. 这一阶段(build阶段)安装的hugo和检出的代码到下一阶段就没了
@@ -95,12 +101,6 @@ jobs:
         run: |  
           rm -rf ~/.ssh/id_rsa  
           rm -rf ~/.ssh/known_hosts
-      - name: Upload artifact
-        # uses是直接调用actions, run是自己写命令
-        uses: actions/upload-pages-artifact@v3
-        # with 是用于给 uses 指定的的 actions 传递参数的
-        with:
-          path: ./public
 
   # Deployment job
   deploy:
