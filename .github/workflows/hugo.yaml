@@ -65,8 +65,6 @@ jobs:
             --gc \
             --minify \
             --baseURL "${{ steps.pages.outputs.base_url }}/"
-          pwd
-          hugo --gc --minify
       - name: Upload artifact
         # uses是直接调用actions, run是自己写命令
         uses: actions/upload-pages-artifact@v3
@@ -90,6 +88,7 @@ jobs:
         # 使用ssh命令在服务器上执行脚本或命令
         # 使用scp命令复制文件到服务器
         run: | 
+          hugo --gc --minify
           pwd
           ls
           mkdir -p ~/.ssh
