@@ -26,6 +26,10 @@ series_order = 1
 照着官方文档安装即可.(go, dart-sass, hugo)
 windows包管理工具我选择了scoop
 
+### Linux
+
+go, dart-sass 和 hugo 使用homebrew安装, 不要用apt, 版本太老了. 尤其是hugo, apt的老版本hugo可能不兼容新主题.
+
 
 ## 快速开始
 
@@ -185,5 +189,6 @@ hugo必须有模板文件才能构建网站代码, 没有自己写模板文件, 
 
 **解决办法**:
 两种办法:
+
 1. 自己写模板文件(不现实, 我是新手)
 2. 使用主题(主题中都自带有模板文件)
