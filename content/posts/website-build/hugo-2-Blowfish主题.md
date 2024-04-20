@@ -116,3 +116,24 @@ Blowfish主题. 啊, 很不错. 官方文档介绍非常详细, 多看看官方�
 * 自定义配色方案
 * 覆盖样式
 * 如何修改主题源代码
+
+
+
+## 遇到的问题
+
+### 创建的菜单点击不跳转
+
+menus.zh-cn.toml 菜单配置示例:
+
+``` ini
+[[main]]
+  name = "Linux"
+  parent = "目录"
+  pageRef = "posts/operating-system"
+  pre = "bars"
+  weight = 20
+```
+
+原因是pageRef引用的 Hugo 分类不存在,  在 posts/operating-system/ 目录下新建一个 `_index.md` 文件就好了.
+
+参考: https://gohugo.io/getting-started/glossary/#section

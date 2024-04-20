@@ -45,6 +45,12 @@
   pageRef = "posts/software"
   pre = "bars"
   weight = 20
+[[main]]
+  name = "Linux"
+  parent = "目录"
+  pageRef = "posts/operating-system"
+  pre = "bars"
+  weight = 20
 
 
 # -- Main Menu --
