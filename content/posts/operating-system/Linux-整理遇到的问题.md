@@ -43,7 +43,15 @@ Categories=Development
 
 ### 如何安装Linux系统
 
-1. 下载`sufus` , 用它制作Linux U盘启动引导盘.
+方法1: 使用ventoy (推荐)
+
+ventoy全平台可用, 而且使用超简单. 运行软件, 然后一键把ventoy安装到u盘上, 之后只需要把ios文件拷贝到u盘中即可. 此u盘可以正常作为普通u盘使用. 把安装有ventoy的u盘作为启动引导盘时电脑会自动进入ventoy的界面, ventoy会自动遍历u盘中的ios镜像文件, 在此界面可以选择要使用的ios镜像文件即可.
+
+
+
+方法2: 使用refus
+
+1. 下载`rufus` , 用它制作Linux U盘启动引导盘.
 
 2. 将引导盘插到要安装的电脑上, 设置BIOS启动项顺序, 把U盘启动顺序调到第一, 按照指引安装即可.
 

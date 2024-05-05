@@ -2,7 +2,7 @@
 title = 'TLS证书申请 - Acme.sh'
 date = 2024-04-12T12:25:47+08:00
 draft = false
-tags = ["软件", "ssl"]
+tags = ["软件", "SSL/TLS"]
 +++
 
 
