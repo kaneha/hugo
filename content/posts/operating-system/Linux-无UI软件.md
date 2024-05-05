@@ -168,6 +168,8 @@ WantedBy=multi-user.target
 
 ### screen
 
+screen还有一个功能更强大的替代品 `tmux`, 以后有时间可以尝试下
+
 linux命令直接挂到后台会停止, screen可以为命令创建一个专用的窗口, 此窗口可以在后台执行.
 
 ``` text
