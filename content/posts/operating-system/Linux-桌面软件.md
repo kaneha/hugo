@@ -60,6 +60,30 @@ sudo service gdm3 restart
 
 `sudo apt install synaptic`
 
+### snipaste
+
+2023年12月snipaste推出了linux版的AppImage软件包, 目前软件还不太稳定, 后续要多注意版本更新.
+
+#### 遇到的问题
+
+1. 右键托盘图标打不开设置页面
+
+贴出图片后按快捷键`ctrl + shift + p` 打开设置界面. 或者使用 GNOME 插件`AppIndicator and KStatusNotifierItem Support` 将托盘图标位置改为居中.
+
+2. 快捷键在部分页面不生效
+
+解决方法: 创建全局的自定义快捷键, 通过snipaste命令来执行截图和贴图. 
+
+详情查看snipaste wiki 的命令行选项相关内容: [snipaste wiki](https://github.com/Snipaste/feedback/wiki)
+
+``` bash
+# 常用命令
+# 截图
+./snipaste.AppImage snip
+# 贴图
+./snipaste.AppImage paste
+```
+
 ### Flameshot
 
 截图软件, 官网文档: https://flameshot.org/docs/
