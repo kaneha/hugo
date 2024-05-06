@@ -43,7 +43,7 @@ im-config
 
 检查gnome扩展管理器里是否安装了**Input Method Panel** 这个插件， 有的话禁用或卸载此插件即可.
 
-> * fedora系统下fcitx5不能自动重启
+> * fedora系统下fcitx5不能自动启动
 
 需要额外安装一个软件: `sudo dnf install fcitx5-autostart`
 
