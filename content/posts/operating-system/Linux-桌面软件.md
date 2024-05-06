@@ -49,6 +49,12 @@ im-config
 
 参考: https://yanqiyu.info/2020/11/06/fcitx5-fedora-updated/
 
+### wps
+
+直接去官网下载安装包即可.
+
+解决字体问题: https://github.com/dv-anomaly/ttf-wps-fonts
+
 ### 腾讯会议
 
 腾讯会议不支持wayland， 需要关闭wayland才能使用腾讯会议

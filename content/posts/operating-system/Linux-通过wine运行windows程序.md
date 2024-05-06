@@ -17,7 +17,7 @@ wine官网: https://www.winehq.org/
 
 ## 快速开始
 
-### 安装
+### debian安装
 
 借助清华大学开源软件镜像服务解决网络问题: [清华大学wine镜像服务](https://mirrors.tuna.tsinghua.edu.cn/help/wine-builds/)
 
@@ -47,6 +47,15 @@ wine最好使用最新的稳定版, 安装步骤分3步
    apt update
    apt install --install-recommends winehq-stable
    ```
+
+### fedora40安装
+
+```bash
+# 注意, fedora刚更新40版本, wine还没有fedora40的仓库, 这里先使用fedora39的仓库
+sudo dnf config-manager --add-repo https://dl.winehq.org/wine-builds/fedora/39/winehq.repo
+sudo dnf makecache
+sudo dnf install winehq-stable
+```
 
 ### 使用
 

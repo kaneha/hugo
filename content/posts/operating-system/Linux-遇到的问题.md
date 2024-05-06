@@ -7,6 +7,10 @@ series_order = 1
 
 +++
 
+
+
+## Linux通用
+
 ### 创建快捷方式
 
 把 `名字.desktop` 放在 `/usr/share/applications`  或者 `/home/kaneha/.local/share/applications` 就会在启动器中显示, 也可指直接放在桌面上. 文件内容示例:
@@ -24,6 +28,12 @@ Icon=/home/kaneha/portable-app/WindTerm_2.5.0/windterm.png
 Type=Application
 Categories=Development
 ```
+
+
+
+## debian
+
+
 
 ### 修改默认编辑器
 
@@ -86,3 +96,22 @@ sudo vim /var/lib/locales/supported.d/local
 sudo locale-gen
 ```
 
+
+
+## Fedora
+
+
+### 安装jdk
+``` bash
+sudo dnf install java-17-openjdk-devel
+```
+
+jdk的安装目录在 `/usr/lib/jvm`
+
+### 切换使用的jdk版本
+
+fedora40自带了java21的jvm, 要想使用我安装的jdk17, 则需要使用这个命令切换java版本.
+
+``` bash
+alternatives --config java
+```
