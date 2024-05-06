@@ -49,6 +49,18 @@ sudo apt install gnome-tweaks gnome-shell-extensions -y
 
 在 extension manager  中搜索 dash 可以安装任务面板
 
+### GNOME插件推荐
+
+1. `AppIndicator and KStatusNotifierItem Support` : 在 topbar 显示系统托盘图标
+2. `Blur my Shell` : topbar 透明化, 很漂亮
+3. `Clipboard Indicator` : 剪切板历史记录, 并且在 topbar 提供图标
+4. `Dash to Dock` : 支持自定义dock样式
+5. `Just Perfection` : 提供细致的GNOME UI调整功能
+6. `Order Gnome Shell extensions` : 支持调整 topbar 各元素的展示顺序
+7. `Unite`: 可以隐藏双重顶栏, 需要自己去github下载最新版,  extension manager 中只能搜索到旧版
+8. `Vitals` : 系统资源监控, 包括内存占用, 系统负载, 实施流量等.
+9. `Workspace Indicator` : 在 topbar 展示工作空间. GNOME45及以上版本已经自带此功能所以无需此插件. 顺带一提debian12使用的是GNOME43.
+
 
 
 ### 安装字体
