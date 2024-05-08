@@ -1,9 +1,7 @@
 +++
 title = 'Linux - 桌面环境'
 date = 2024-04-20T17:00:15+08:00
-tags = ["Linux"]
-series = ["Linux"]
-series_order = 1
+weight = 2
 
 +++
 

@@ -1,10 +1,7 @@
 +++
 title = 'Linux - 通过wine运行windows程序'
 date = 2024-05-05T17:50:43+08:00
-tags = ["Linux","wine"]
-series = ["Linux"]
-series_order = 1
-
+weight = 2
 +++
 
 

@@ -1,7 +1,7 @@
 +++
 title = '远程控制 - OpenSSH'
 date = 2024-04-13T20:34:10+08:00
-tags = ["软件", "SSH"]
+weight = 2
 +++
 
 ## SSH密钥登录

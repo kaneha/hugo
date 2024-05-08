@@ -1,9 +1,7 @@
 +++
-title = 'Hugo - 2 - Blowfish主题'
+title = 'Hugo - Blowfish主题'
 date = 2024-04-11T11:24:24+08:00
-tags = ["建站"]
-series = ["Hugo建站"]
-series_order = 2
+weight = 2
 
 +++
 

@@ -1,9 +1,7 @@
 +++
 title = 'Linux - 系统安装'
 date = 2024-05-06T13:45:54+08:00
-tags = ["Linux"]
-series = ["Linux"]
-series_order = 0
+weight = 2
 +++
 
 ## 安装流程

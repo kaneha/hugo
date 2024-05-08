@@ -1,7 +1,7 @@
 +++
-title = '文件冷备 Restic'
+title = '文件冷备 - Restic'
 date = 2024-05-05T18:37:34+08:00
-tags = ["软件","文件冷备"]
+weight = 2
 +++
 
 

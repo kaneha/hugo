@@ -1,9 +1,7 @@
 +++
 title = 'Linux - 无UI软件'
 date = 2024-04-20T15:42:09+08:00
-tags = ["Linux"]
-series = ["Linux"]
-series_order = 1
+weight = 2
 +++
 
 没有用户图形界面的软件, 一般使用命令操作.

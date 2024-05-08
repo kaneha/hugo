@@ -1,9 +1,7 @@
 +++
 title = 'Linux - Vim'
 date = 2024-04-20T16:33:10+08:00
-tags = ["Linux", "Vim"]
-series = ["Linux"]
-series_order = 1
+weight = 2
 
 +++
 

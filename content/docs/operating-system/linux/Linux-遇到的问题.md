@@ -1,9 +1,7 @@
 +++
 title = 'Linux - 遇到的问题'
 date = 2024-04-20T16:38:41+08:00
-tags = ["Linux"]
-series = ["Linux"]
-series_order = 1
+weight = 2
 
 +++
 
