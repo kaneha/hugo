@@ -1,0 +1,19 @@
+
+{{ define "main" }}
+{{/* 模板内不要使用html的注释, 可能导致报错 */}}
+{{/* define 是定义一个模板块 */}}
+{{/* 注意: 在define作用域外不能有任何文本(包括注释), 否则模板块就无效了 */}}
+
+  
+<main class="row">
+  <div class="col-sm-2 sidebar">
+    <div>{{ partial "navigator.html" . }}</div>
+    <div class="outline">{{ partial "tableOfContents" . }}</div>
+  </div>
+    
+  </div>
+  <div class="col-sm-6 content">{{ .Content }}</div>
+</main>
+
+{{ end }}
+

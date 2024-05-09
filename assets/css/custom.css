@@ -1,8 +1,45 @@
-/* 在 assets/css 下的css文件优先级最高, 可以在这里自定义样式 */
 
 
-/* 在这里自定义hextra主题的代码高亮样式 */
-.highlight {
+.header {
+  background-color: black;
+  color: white;
+  position: fixed;
+}
+
+.main {
+}
+
+.list {
+  background-color: azure;
 }
 
 
+.side-nav-2 {
+  padding-left: 1em;
+}
+
+.side-nav-3 {
+  padding-left: 2em;
+}
+
+.sidebar {
+  border-radius: 10px;
+  border-color: black;
+  border-style: solid;
+  margin: 3em 1em 2em 0em;
+}
+
+.outline {
+  margin-top: 1em;
+  border-top: thick double black;
+}
+
+.content {
+  padding: 3em 2em 0em 2em;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+a:hover {color: inherit;}

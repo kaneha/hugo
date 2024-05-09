@@ -1,0 +1,23 @@
+
+
+
+
+{{ range .Site.Sections }}
+  {{ if eq .Type "docs" }}
+    <div class="">
+      {{ $controlX := printf "%s%s" "#" .Title }}
+      {{ $docsTitle := .Title }}
+      <div id="accordion">
+        {{ range .Sections }}
+          {{ $control := printf "%s%s" "#" .Title }}
+          <div id="{{ $docsTitle }}" data-bs-toggle="collapse" data-bs-target="{{ $control }}" class=" side-nav-2">{{ .Title }}</div>
+          <div id="{{.Title}}" data-bs-parent="#accordion" class="collapse side-nav-3">
+            {{ range .RegularPages }}
+              <div><a href="{{ .RelPermalink }}">{{ .Title }}</a></div>
+            {{ end }}
+          </div>
+        {{ end }}
+      </div>
+    </div>
+  {{ end }}
+{{ end }}

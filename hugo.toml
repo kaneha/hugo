@@ -4,7 +4,7 @@
 
 defaultContentLanguage = "custom"
 title = "Kaneha's Blog"
-theme = 'hextra'
+# theme = 'hextra'
 
 
 [markup.highlight]

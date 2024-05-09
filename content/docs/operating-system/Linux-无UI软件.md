@@ -6,6 +6,7 @@ weight = 2
 
 没有用户图形界面的软件, 一般使用命令操作.
 
+## 无UI软件
 ### apt & dpkg
 
 apt和dpkg的区别:

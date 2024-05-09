@@ -1,0 +1,15 @@
+
+{{ define "main" }}
+
+  
+<main class="main container-fluid row">
+  <div class="col-sm-2 sidebar">
+    <div class="row">{{ partial "navigator.html" . }}</div>
+  </div>
+  <div class="col-sm-6">
+    {{ .Content }}
+  </div>
+
+
+</main>
+{{ end }}

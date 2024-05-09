@@ -5,6 +5,34 @@ weight = 2
 
 +++
 
+``` java
+public static void main() {
+    int a = 3;
+    fine();
+}
+```
+
+``` shell
+#!/bin/bash
+$var1=10;
+```
+
+``` javascript
+var fine = 10;
+function abc = (var1, var2) {
+    return var1 + var2;
+}
+```
+
+``` bash
+echo 'hello world!' > ./test.txt
+cat test.txt
+```
+
+
+
+
+
 设置默认编辑器(仅限debian系): `sudo update-alternatives --config editor`
 
 # vim使用手册
