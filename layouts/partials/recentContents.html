@@ -3,7 +3,7 @@
 <div class="list">
   <h4>最近发布内容</h4>
   <ul>
-  {{ range first 10 .Site.RegularPages }}
+  {{ range first 10 .Site.RegularPages.ByDate.Reverse }}
     <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
   {{ end }}
   </ul>
