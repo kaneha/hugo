@@ -1,5 +1,5 @@
 +++
-title = 'Hugo - 快速入门'
+title = 'Hugo - 1 - 快速入门'
 date = 2024-04-11T10:29:17+08:00
 weight = 1
 +++

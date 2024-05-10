@@ -1,5 +1,5 @@
 +++
-title = 'Hugo - Blowfish主题'
+title = 'Hugo - 2 - Blowfish主题'
 date = 2024-04-11T11:24:24+08:00
 weight = 2
 

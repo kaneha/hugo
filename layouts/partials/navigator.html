@@ -12,7 +12,7 @@
           {{ $control := printf "%s%s" "#" .Title }}
           <div id="{{ $docsTitle }}" data-bs-toggle="collapse" data-bs-target="{{ $control }}" class=" side-nav-2">{{ .Title }}</div>
           <div id="{{.Title}}" data-bs-parent="#accordion" class="collapse side-nav-3">
-            {{ range .RegularPages }}
+            {{ range .RegularPages.ByTitle }}
               <div><a href="{{ .RelPermalink }}">{{ .Title }}</a></div>
             {{ end }}
           </div>
