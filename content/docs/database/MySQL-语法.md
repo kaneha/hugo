@@ -78,6 +78,8 @@ SELECT <field_1>, <field_2>... FROM <table_name> WHERE <clause>
 -- 1. DISTINCT去重
 -- distinct 作用于select后的所有字段, 只有全部字段都重复的条目才会被去重
 SELECT DISTINCT name, role FROM users;
+-- DISTINCT 关键字可以用在函数内
+SELECT COUNT(DISTINCT score) FROM students;
 -- distinct 必须作用于所有查询字段, 不能针对某个字段
 -- 错误示例: XXX --> SELECT name, DISTINCT role FROM users;
 
@@ -157,6 +159,19 @@ SELECT stu_name, class, subject, totle_score FROM stu_total_score
 ### 子查询
 
 `子查询`也称为`内部查询`, 包含子查询的查询称为`外部查询`. 子查询可以在任何可以使用表达式的地方使用.
+
+**SELECT后的子查询 :**
+
+``` sql
+-- 将子查询作为临时表
+SELECT 
+    (SELECT DISTINCT salary 
+    FROM employee 
+    ORDER BY salary DESC LIMIT 1, 1
+) AS SecondHighestSalary
+```
+
+
 
 **WHERE子句中的子查询 :**
 
