@@ -37,7 +37,7 @@ SELECT <field_1>, <field_2>... FROM <table_name> WHERE <clause>
 ### WHERE子句
 
 * BETWEEN : `...WHERE id BETWEEN 1 AND 10`
-* IN : `...WHERE status IN(0, 2, 99)`, `...WHERE id IN(SELECT id FROM ...)`
+* IN : `...WHERE status IN(0, 2, 99)`, `...WHERE (id, score) IN(SELECT id, score FROM ...)`
 * AND : `...WHERE id>10 AND price<500`
 * OR : `WHERE id<100 OR id>999`
 * NOT : 对判断句取反
@@ -104,8 +104,23 @@ SELECT COUNT(DISTINCT score) FROM students;
 
 ### 多表查询/关联查询/连接查询
 
+要注意的点:
+
 * 连接查询使用ON作为连接条件, ON的执行顺序优先于WHERE.
 * 如果两张表的连接字段字段名相同, 可以用 `USING(id)` 替换 `ON a.id=b.id`
+* 内连接与左外连接的区别: 
+  * 内连接查询的内容: 两张表on关联上的数据
+  * 左连接查询的内容: 内连接的内容 + 无关联的左表数据 (也就是左表全部数据都被查询出了, 无关联左表数据的右表字段指为null)
+
+* 多表关联时, 按顺序执行关联, 例如有学生表, 中间表和课程表. 先关联出学生表和中间表的数据, 再用此数据关联课程表, 最终查出学生的所有课程.
+
+>  内连接的查询条数计算:
+>
+> * 自连接的情况
+>   * 假设用学生成绩表自连接. 小明有3条成绩数据, 分别是语文数学和外语, 那么用name作为连接条件自连接时会查出几条数据? 答案是9条. a表3条数据中的每条数据都对应b表中的3条数据
+> * 非自连接的情况
+>   * 假设有超市表和商品表, 有2个超市, 一号超市有3种商品, 二号超市有5种商品, 那么会查出几条数据? 8条. 一号超市: 1 * 3 = 3 ; 二号超市: 1 * 5 = 5.
+> * 总结: 一对多时, 每个一对应的多的条目数相加就是查出的总条数
 
 **内连接** : 
 
@@ -163,7 +178,8 @@ SELECT stu_name, class, subject, totle_score FROM stu_total_score
 **SELECT后的子查询 :**
 
 ``` sql
--- 将子查询作为临时表
+-- SELECT后的子查询只能查询一个字段并且只能返回一条数据
+-- 如果查询多个字段则会报错, 如果返回多条数据则查不到数据
 SELECT 
     (SELECT DISTINCT salary 
     FROM employee 

@@ -100,3 +100,34 @@ FROM student;
 添加一列用作排名, 与rank()不同的是不会跳过名次, 有并列第1时, 第1名后面仍是第2名.
 
 写法与row_number()完全相同
+
+
+
+### lag()
+
+写法: `lag(列名, offset, defaultVal) over ...`
+
+用于获取窗口内指定列往上数第offset行的列值, 没有值时使用默认值defaultVal.
+
+参数可以只指定列名, offset默认为1, defaultVal为null, 例如: `lag(列名)`
+
+```sql
+-- 假设有一张表名为ids的表只有一个id字段. 有3条数据分别为 1, 2, 3
+SELECT 
+	id,
+	lag(id, 1, 999) OVER (ORDER BY id) as lag_value
+FROM ids;
+-- 查询出的数据为
+-- id	lag_value
+-- 1	999
+-- 2	1
+-- 3	2
+```
+
+
+
+### lead()
+
+写法: `lead(列名, offset, defaultVal) over ...`
+
+与lag()相反, lead()是往下数
