@@ -24,7 +24,56 @@ weight = 10
 
 #### min()
 
+### 日期函数
+
+#### datediff()
+
+`datediff(date1, date2)` : 第一个日期减去第二个日期, 注意区分date和datetime
+
+``` sql
+-- 相当于 date1 - date2 = 1
+where datediff(date1, date2) = 1
+```
+
+
+
+### 数学计算函数
+
+#### round()
+
+`round(val [, 小数位])`
+
+四舍五入, 可以指定保留几位小数, 不传小数位时默认取整数
+
+``` sql
+-- 查询学生成绩优秀率, 保留2位小数
+select
+    round(
+	    count( if(s.score > 80, 1, null) ) / count(1) , 2
+	) as '优秀率'
+from student s;
+```
+
+
+
 ### 其他函数
+
+#### if()
+
+`if(express, trueVal, falseVal)`
+
+if() 函数用于根据条件返回值, 表达式为 true 返回 trueVal, 表达式为 false 返回 falseVal.
+
+``` sql
+-- 查询学生成绩及格率
+-- 问: if函数中的 falseVal 为什么是null不是0?
+-- 		因为count会把0统计进去, 但是null不会被统计
+select
+	count( if(s.score > 60, 1, null) ) / count(s.score)  as '及格率'
+from student s;
+```
+
+
 
 #### concat()
 
@@ -34,8 +83,8 @@ weight = 10
 
 ``` sql
 select 
-concat(class, '-', name) as class_name,
-subject, score
+	concat(class, '-', name) as class_name,
+	subject, score
 from student;
 ```
 
