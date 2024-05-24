@@ -17,12 +17,12 @@
   border-radius: 10px;
   border-color: black;
   border-style: solid;
-  margin: 3em 1em 2em 0em;
+  margin: 0.5em 1em 2em 0em;
   flex-basis: 15%;
 }
 
 .content {
-  padding: 3em 0em 0em 0em;
+  margin: 0em 0em 0em 0em;
   flex-basis: 85%;
   overflow: auto;
   height: 95vh;
