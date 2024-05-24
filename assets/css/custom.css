@@ -3,11 +3,29 @@
 .header {
   background-color: black;
   color: white;
-  position: fixed;
   height: 30px;
 }
 
 .main {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+}
+
+.sidebar {
+  border-radius: 10px;
+  border-color: black;
+  border-style: solid;
+  margin: 3em 1em 2em 0em;
+  flex-basis: 15%;
+}
+
+.content {
+  padding: 3em 0em 0em 0em;
+  flex-basis: 85%;
+  overflow: auto;
+  height: 95vh;
 }
 
 .list {
@@ -23,21 +41,14 @@
   padding-left: 2em;
 }
 
-.sidebar {
-  border-radius: 10px;
-  border-color: black;
-  border-style: solid;
-  margin: 3em 1em 2em 0em;
-}
+
 
 .outline {
   margin-top: 1em;
   border-top: thick double black;
 }
 
-.content {
-  padding: 3em 0em 0em 0em;
-}
+
 
 a[header] {
   color: inherit;

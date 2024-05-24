@@ -5,12 +5,12 @@
 {{/* 注意: 在define作用域外不能有任何文本(包括注释), 否则模板块就无效了 */}}
 
   
-<main class="main container-fluid row">
+<main class="main">
 
-  <div class="col-sm-2 sidebar">
-    <div class="row">{{ partial "navigator.html" . }}</div>
+  <div class="sidebar">
+    <div class="">{{ partial "navigator.html" . }}</div>
   </div>
-  <div class="col-sm-7">
+  <div class="">
     {{ .Content }}
     {{ partial "recentContents.html" . }}
   </div>
