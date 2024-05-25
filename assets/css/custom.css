@@ -21,11 +21,15 @@
   flex-basis: 15%;
 }
 
-.content {
-  margin: 0em 0em 0em 0em;
+.content-container {
   flex-basis: 85%;
   overflow: auto;
   height: 95vh;
+}
+.content {
+  
+  width: 100vh;
+  
 }
 
 .list {
