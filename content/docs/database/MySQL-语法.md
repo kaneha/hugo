@@ -15,6 +15,10 @@ weight = 10
 INSERT INTO <table_name> (field_1, field_2...) VALUES(val_1, val_2...);
 -- 一次插入多条
 INSERT INTO <table_name> (field_1, field_2...) VALUES (val_1, val_2...), (val_1, val_2...);
+-- 主键冲突就更新指定字段, 不冲突则插入
+INSERT INTO <table_name> (field_1, field_2...) VALUES (val_1, val_2...), (val_1, val_2...)
+ON DUPLICATE KEY UPDATE 
+<field_1> = VALUES(field_1), <field_2> = VALUES(field_2), ...;
 -- 将查出的数据直接插入某表
 INSERT INTO <table_name> (field_1, field_2...) SELECT (field_1, field_2...) FROM ...;
 -- 将查出的数据直接插入某表 (要求表2不存在, mysql会自动创建目标表)
