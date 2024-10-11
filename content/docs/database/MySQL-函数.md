@@ -113,17 +113,26 @@ mysql8开始支持窗口函数
 要注意的点:
 
 * 窗口函数写法: `窗口函数() OVER (partition by 列名 order by 列名) `
-
 * 窗口函数写在什么位置: `SELECT后`
-* 窗口函数可以写哪些函数: 
+* 哪些函数可以使用窗口: 
   * `专用窗口函数` : 例如 row_number() 等
   *  `聚合函数`
 * 窗口函数特性:
   * `OVER` 关键字表示开窗, 窗口内可以对查询出的数据分区或排序
-  * `partition by` 表示分区, 它不会影响条数, 只是单纯的分区. 例如 `partition by subject` 会将相同subject的数据放到一起
-  * 窗口内的 `partition by` 和 `order by`  都只是影响数据的排序方式, 如果窗口外有`order by`, 则最终返回数据按照窗口外`ORDER BY`指定的顺序排列, 窗口内的排序只影响窗口函数的计算; 如果窗口外没有`order by`, 则最终返回数据使用窗口函数的排序
-  * 窗口内可以单独使用 `partition by` 和 `order by`, 也可以两个一起用
+  * `partition by` 表示分区, 用来分隔数据集, 同时也影响排序(相同分区的放在一起). 窗口函数会在每个分区内独立计算. `partition by` 多个字段时, 多个字段共同确定分区, 类似联合主键多个字段共同确定数据行唯一性. 例如 `partition by date, saler` 表示按照每个销售员每天的数据维度进行分区.
+  * `order by` 在窗口函数内可以和 `partition by` 一起使用, 一起使用时, `order by` 用来在分区内排序
+  * 如果窗口外有`order by`, 则最终返回数据按照窗口外`ORDER BY`指定的顺序排列; 如果窗口外没有`order by`, 则最终返回数据顺序由窗口内的 `partition by` 和 `order by` 共同决定.
 
+窗口函数示例:
+``` sql
+-- 查询学生成绩表
+-- 其中 accuScore 表示一个学生的累计得分, 逐行累计. 每个学生都单独计算累计得分(因为按照学生姓名分区了)
+-- 例如学生张三有语数外3科成绩, 所以有3行数据, 假设语数外分别为20,30,40分且分区内按语数外排序, 则accuScore分别为: 20,50,90
+SELECT 
+  name, subject, score
+  sum(score) OVER (PARTITION BY name ORDER BY subject) accuScore
+  FROM student_score;
+```
 
 
 ### row_number()
