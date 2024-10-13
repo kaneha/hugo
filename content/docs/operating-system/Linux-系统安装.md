@@ -32,12 +32,31 @@ ventoy全平台可用, 而且使用超简单. 运行软件, 然后一键把vento
 安装Linux系统时, 常用的挂载点有
 
 * `/` : 挂载根目录
-* `/boot` : 它的作用是安装grub、存放Linux kernel以及initrd映像。这些都是启动时必需的东西，单独存在boot区便于管理。可以分配大约500M空间。
-* `/home` : 挂载用户目录. 单独挂载此目录时, 将来换其它版本的Linux也不会影响你自己的数据
+* `/boot` : 它的作用是安装grub、存放Linux kernel以及initrd映像。这些都是启动时必需的东西，单独存在boot区便于管理。可以分配 500M-1G 空间。
+* `/home` : (可选)挂载用户目录. 单独挂载此目录时, 将来换其它版本的Linux也不会影响你自己的数据
 
 为了正确安装Linux, 通常最少需要创建3个分区
 
 * 挂载 `/boot` 的分区: 大约500M-1G空间
 * 挂载 `/` 的分区: 容量不宜过大, 系统分区只能扩容不能缩容, 如果确定不会安装双系统则无所谓.
 * swap分区: 可选分区, 不创建此分区也行. 容量通常是内存容量的1倍, 当然也可以更小或更大.
+
+## Arch Linux 安装
+
+安装教程: https://github.com/nakanomikuorg/arch-guide
+
+教程讲的十分全面, 非常好哇.
+
+### 安装Arch时遇到的问题
+
+#### 主板启动项没有Arch
+
+1. (微星主板) 启动项设置最下边有个 `UEFI 硬盘BBS启动优先权`, 点开把Arch放到第一即可.
+原因是我把windows和Arch安装到同一块硬盘上了.
+
+#### grub启动项没有windows
+
+1. 编辑 `/etc/default/grub`，取消注释或新增一行 `GRUB_DISABLE_OS_PROBER=false`
+2. 执行 `sudo os-prober` 看能否检测到windows操作系统. 能检测到则继续下一步
+3. 重新生成 grub.cfg `sudo grub-mkconfig -o /boot/grub/grub.cfg`
 

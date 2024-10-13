@@ -12,20 +12,30 @@ weight = 2
 ## Linux桌面软件
 
 ### fcitx5
+fcitx5只是一个输入法框架, 仅支持英文输入, 如果要输入其他语言则必须安装对应语言的fcitx5输入法引擎
 
 **安装**
 
 ``` bash
-# 安装
+# ubuntu安装
 sudo apt install fcitx5 fcitx5-chinese-addons;
 # 设置为默认输入法(注意只有debian系有这个软件, 红帽系没有)
 im-config
 # # 打开fcitx5配置， 输入法顺序改为
 # 1. 键盘 - 英语 (美国)
 # 2. 拼音(如果用双拼，就选shuangping)
-
-# 设置完毕后记得重启下输入法
 ```
+**Arch & Gnome 安装fcitx5**
+
+1. 通过pacman卸载本地所有fcitx5相关软件 --> sudo pacman -Rns $(pacman -Qsq fcitx5)
+2. 安装fcitx5, fcitx5-qt, fcitx5-gtk, fcitx5-configtool,   fcitx5-chinese-addons
+3. 通过fcitx5 configuration 软件配置中文输入法即可.
+4. 按照 arch fcitx5 wiki 所说, 兼容XDG的桌面环境(例如KDE,GNOME,Xfce,LXDE等), 无需设置即可随桌面环境自启动, 事实的确如此, 至少我的 arch gnome 可以正常自启动.
+
+其他说明
+
+1. 全程不用管 gnome 系统设置里的键盘输入法设置, 安装fcitx5后这个设置项应该是不起作用了
+2. 我目前没有配置任何fcitx5相关的环境变量, 暂时没有碰到有软件不支持中文输入的问题, 以后碰到了再按照wiki进行设置
 
 **fcitx5主题**
 
@@ -48,6 +58,17 @@ im-config
 需要额外安装一个软件: `sudo dnf install fcitx5-autostart`
 
 参考: https://yanqiyu.info/2020/11/06/fcitx5-fedora-updated/
+
+### AppImageLauncher
+
+苦于 AppImage 软件创建桌面图标无法设置icon的人有福了.
+
+github项目页面: [github - AppImageLauncher](https://github.com/TheAssassin/AppImageLauncher?tab=readme-ov-file)
+
+1. 按官方教程安装
+2. 安装完后打开 appimagelauncher 设置界面, 设置appimages文件所在目录(默认~/Applications)
+3. 把所有的appimage软件放到该目录下, 然后双击打开即可运行, 首次运行时会自动创建图标, 以后就可以从图标启动appimage了
+	
 
 ### wps
 
