@@ -12,11 +12,12 @@ weight = 2
 ## Linux桌面软件
 
 ### fcitx5
+
 fcitx5只是一个输入法框架, 仅支持英文输入, 如果要输入其他语言则必须安装对应语言的fcitx5输入法引擎
 
 **安装**
 
-``` bash
+```bash
 # ubuntu安装
 sudo apt install fcitx5 fcitx5-chinese-addons;
 # 设置为默认输入法(注意只有debian系有这个软件, 红帽系没有)
@@ -25,6 +26,7 @@ im-config
 # 1. 键盘 - 英语 (美国)
 # 2. 拼音(如果用双拼，就选shuangping)
 ```
+
 **Arch & Gnome 安装fcitx5**
 
 1. 通过pacman卸载本地所有fcitx5相关软件 --> sudo pacman -Rns $(pacman -Qsq fcitx5)
@@ -36,6 +38,18 @@ im-config
 
 1. 全程不用管 gnome 系统设置里的键盘输入法设置, 安装fcitx5后这个设置项应该是不起作用了
 2. 我目前没有配置任何fcitx5相关的环境变量, 暂时没有碰到有软件不支持中文输入的问题, 以后碰到了再按照wiki进行设置
+   1. jetbrain系软件无法输入中文, 解决办法, 去家目录的 `.bash_profile` 文件中导出环境变量即可. 这里有一个巨坑: **在 `.bashrc` 文件下配置环境变量并且`env`命令能查到配置的环境变量但idea依然无法输入中文, 但是配置到 `.bash_profile` 文件就没问题了.** arch中文wiki没有相关介绍, 但是在arch 英文wiki上看到有提说不要把fcitx的相关环境变量配置到`.bashrc`, 试了一下果然是这个原因. 这里附上arch英文wiki链接 [ArchWiki-fcitx]([Fcitx - ArchWiki](https://wiki.archlinux.org/title/Fcitx#Set_environment_variables_for_IM_modules)). 进去后搜索关键字 `bashrc` 即可找到.
+
+环境变量配置内容:
+
+```bash
+# 配置内容
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+```
+
+
 
 **fcitx5主题**
 
@@ -68,7 +82,6 @@ github项目页面: [github - AppImageLauncher](https://github.com/TheAssassin/A
 1. 按官方教程安装
 2. 安装完后打开 appimagelauncher 设置界面, 设置appimages文件所在目录(默认~/Applications)
 3. 把所有的appimage软件放到该目录下, 然后双击打开即可运行, 首次运行时会自动创建图标, 以后就可以从图标启动appimage了
-	
 
 ### wps
 
@@ -80,11 +93,12 @@ github项目页面: [github - AppImageLauncher](https://github.com/TheAssassin/A
 
 腾讯会议不支持wayland， 需要关闭wayland才能使用腾讯会议
 
-``` bash
+```bash
 sudo vim /etc/gdm3/custom.conf
 #WaylandEnable=false 的注释井号去掉
 sudo service gdm3 restart
 ```
+
 ### synaptic(新立得软件包管理器)
 
 可以看作是apt的图形界面.
@@ -107,7 +121,7 @@ sudo service gdm3 restart
 
 详情查看snipaste wiki 的命令行选项相关内容: [snipaste wiki](https://github.com/Snipaste/feedback/wiki)
 
-``` bash
+```bash
 # 常用命令
 # 截图
 ./snipaste.AppImage snip
@@ -131,7 +145,7 @@ sudo service gdm3 restart
 
 flatpak安装的应用都在隔离的环境中, 要使用flatpak安装的软件的可执行程序, 需要借助 `flatpak run` 命令. 下面是使用方法
 
-``` bash
+```bash
 # org.flameshot.Flameshot 是flameshot在flatpak中的id
 # 使用 `flatpak list` 命令查询已安装的应用列表.
 flatpak run org.flameshot.Flameshot <子命令> [参数]
@@ -152,50 +166,47 @@ flatpak run org.flameshot.Flameshot <子命令> [参数]
 3. 记得两个文件都要添加可执行权限
 4. 快捷键指向自己创建的可执行文件.
 
-
-
 ### 盒装微信
 
 2024年3月, 微信官方已经发布了Linux版, 以后可以不用这个了, 这个只留作备用
 
 **通过脚本执行docker命令来启动DoChat**
 
-``` bash
+```bash
 #!/bin/bash
 # 这3项是指定 fcitx(小企鹅输入法) 作为输入法, 指定为fcitx后就可以在微信中使用 fcitx 或者搜狗输入法了. 指定为ibus就可以在微信中使用ibus 
-# 	  -e XMODIFIERS=@im=fcitx \
-#	  -e GTK_IM_MODULE=fcitx \
-#	  -e QT_IM_MODULE=fcitx \
+#       -e XMODIFIERS=@im=fcitx \
+#      -e GTK_IM_MODULE=fcitx \
+#      -e QT_IM_MODULE=fcitx \
 
 containerName=DoChat
 var0=`docker ps | grep ${containerName}`
 echo "获取内容是: ${var0}"
 if [[ ${#var0} > 0 ]]
 then
-	echo "微信正在运行中...无需重新打开"
+    echo "微信正在运行中...无需重新打开"
 else
-	echo "准备打开微信..."
-	docker run \
-	  --name ${containerName} \
-	  --rm \
-	  -i \
-	  \
-	  -v "$HOME/Documents/docker_mount/DoChat/WeChat Files/":'/home/user/WeChat Files/' \
-	  -v "$HOME/Documents/docker_mount/DoChat/Applcation Data":'/home/user/.wine/drive_c/users/user/Application Data/' \
-	  -v /tmp/.X11-unix:/tmp/.X11-unix \
-	  \
-	  -e DISPLAY \
-	  \
-	  -e XMODIFIERS=@im=fcitx \
-	  -e GTK_IM_MODULE=fcitx \
-	  -e QT_IM_MODULE=fcitx \
-	  -e GID="$(id -g)" \
-	  -e UID="$(id -u)" \
-	  \
-	  --ipc=host \
-	  --privileged \
-	  \
-	  zixia/wechat
+    echo "准备打开微信..."
+    docker run \
+      --name ${containerName} \
+      --rm \
+      -i \
+      \
+      -v "$HOME/Documents/docker_mount/DoChat/WeChat Files/":'/home/user/WeChat Files/' \
+      -v "$HOME/Documents/docker_mount/DoChat/Applcation Data":'/home/user/.wine/drive_c/users/user/Application Data/' \
+      -v /tmp/.X11-unix:/tmp/.X11-unix \
+      \
+      -e DISPLAY \
+      \
+      -e XMODIFIERS=@im=fcitx \
+      -e GTK_IM_MODULE=fcitx \
+      -e QT_IM_MODULE=fcitx \
+      -e GID="$(id -g)" \
+      -e UID="$(id -u)" \
+      \
+      --ipc=host \
+      --privileged \
+      \
+      zixia/wechat
 fi
 ```
-
