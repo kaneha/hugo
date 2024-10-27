@@ -60,3 +60,21 @@ ventoy全平台可用, 而且使用超简单. 运行软件, 然后一键把vento
 2. 执行 `sudo os-prober` 看能否检测到windows操作系统. 能检测到则继续下一步
 3. 重新生成 grub.cfg `sudo grub-mkconfig -o /boot/grub/grub.cfg`
 
+
+## GRUB
+
+### grub配置文件介绍
+* `/etc/default/grub` : grub的配置文件
+* `/etc/grub.d/` : 该文件夹下包含了一系列的shell脚本, 这些脚本被 grub-mkconfig 调用来生成最终的 GRUB 配置文件(默认: /boot/grub/grub.cfg)
+* `/boot/grub/grub.cfg` : 由`grub-mkconfig` 或 `update-grub` 命令生成的grub配置脚本, 应当每次都由程序生成而不是手动修改它. 文件的作用是定义 GRUB 启动菜单的布局和行为。当计算机启动时，GRUB 会读取这个文件来决定如何呈现启动菜单，并根据用户的输入选择加载哪个操作系统或内核。
+
+### grub命令介绍
+
+* `grub-mkconfig` : 读取 `/etc/default/grub` 和 `/etc/grub.d/` 下的配置, 并生成配置文件, 默认生成的配置文件为: `/boot/grub/grub.cfg`. 
+* `update-grub` : debian系使用 `update-grub` 而不是 `grub-mkconfig` 来生成 `grub.cfg` 文件
+
+### 修改 grub 配置: 
+
+1. 编辑 `/etc/default/grub` 文件
+2. 执行 `sudo grub-mkconfig -o /boot/grub/grub.cfg` 以重新生成最终的GRUB配置文件(grub.cfg). debian系则使用 `update-grub` 命令
+
